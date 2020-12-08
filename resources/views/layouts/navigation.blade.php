@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Laravel 8</a>
+        <a class="navbar-brand" href="#">Hafid Ardiansyah</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,11 +8,11 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link{{ request()->is('/') ? ' active' : '' }}" href="/">Home</a>
+                    <a class="nav-link{{ request()->is('/') ? ' active' : '' }}" href="/">Posts</a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link{{ request()->is('add') ? ' active' : '' }}" href="/add">Add</a>
-                </li>
+                </li> --}}
             </ul>
         </div>
     </div>

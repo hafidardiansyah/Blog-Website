@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostController;
 
 /*
@@ -15,10 +14,5 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index']);
-
-Route::get('posts/{slug}', [PostController::class, 'show']);
-
-Route::get('/add', function () {
-    return view('add');
-});
+Route::get('/', [PostController::class, 'index']);
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
