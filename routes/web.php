@@ -15,4 +15,6 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', [PostController::class, 'index']);
+Route::get('posts/create', [PostController::class, 'create']);
+Route::post('posts/save', [PostController::class, 'save']);
 Route::get('posts/{post:slug}', [PostController::class, 'show']);

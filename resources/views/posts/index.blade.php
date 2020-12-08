@@ -1,14 +1,24 @@
 @extends('layouts.master')
 
+@section('title', 'List post')
+
 @section('content')
     <div class="container">
-        <h3>All Post</h3>
+
+        <div class="d-flex justify-content-between">
+            <div>
+                <h3>All Post</h3>
+                <hr>
+            </div>
+            <div>
+                <a href="posts/create" class="btn btn-primary">New post</a>
+            </div>
+        </div>
 
         <div class="row">
-
-            @foreach ($posts as $post)
+            @forelse ($posts as $post)
                 <div class="col-md-4">
-                    <div class="card mb-3">
+                    <div class="card mb-4">
                         <div class="card-header">
                             {{ $post->title }}
                         </div>
@@ -24,9 +34,20 @@
                         </div>
                     </div>
                 </div>
-            @endforeach
-
-            {{ $posts->links() }}
+            @empty
+                <div class="col-md-6">
+                    <div class="alert alert-info">
+                        Ther's no post.
+                    </div>
+                </div>
+            @endforelse
         </div>
+
+        <div class="d-flex justify-content-center">
+            <div>
+                {{ $posts->links() }}
+            </div>
+        </div>
+
     </div>
 @endsection
