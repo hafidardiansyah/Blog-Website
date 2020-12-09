@@ -27,11 +27,21 @@ class PostController extends Controller
 
     public function save(Request $request)
     {
-        $post = new Post;
-        $post->title = $request->title;
-        $post->slug = Str::slug($request->title);
-        $post->body = $request->body;
-        $post->save();
+        // $post = new Post;
+        // $post->title = $request->title;
+        // $post->slug = Str::slug($request->title);
+        // $post->body = $request->body;
+        // $post->save();
+
+        // Post::create([
+        //     'title' =>  $request->title,
+        //     'slug'  =>  Str::slug($request->title),
+        //     'body'  =>  $request->body
+        // ]);
+
+        $post = $request->all();
+        $post['slug'] = Str::slug($request->title);
+        Post::create($post);
 
         // return redirect()->to('/posts/create');
         return back();
