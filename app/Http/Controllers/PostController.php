@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -11,7 +12,7 @@ class PostController extends Controller
     public function index()
     {
         return view('posts.index', [
-            'posts' => Post::simplePaginate(3)
+            'posts' => Post::simplePaginate(9)
         ]);
     }
 
@@ -22,16 +23,18 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create', ['post' => new Post()]);
     }
 
-    public function save(Request $request)
+    public function save(PostRequest $request)
     {
+        // parameter Request $request for active validate the field
+
         // * Validate the field
-        $attr = $request->validate([
-            'title' => 'required',
-            'body' => 'required',
-        ]);
+        // $attr = $request->validate([
+        //     'title' => 'required|min:3',
+        //     'body' => 'required',
+        // ]);
 
         // $post = new Post;
         // $post->title = $request->title;
@@ -48,6 +51,9 @@ class PostController extends Controller
         // $post = $request->all();
         // $post['slug'] = Str::slug($request->title);
         // Post::create($post);
+
+        // * New validate from postrequest
+        $attr = $request->all();
 
         // * Assign title to the slug
         $attr['slug'] = Str::slug($request->title);
@@ -68,19 +74,22 @@ class PostController extends Controller
         return view('posts.edit', compact('post'));
     }
 
-    public function update(Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        // * Validate the field
-        $attr = request()->validate([
-            'title' => 'required',
-            'body' => 'required',
-        ]);
+        $attr = $request->all();
 
         $post->update($attr);
         session()->flash('success', 'The post was updated.');
 
         // session()->flash('error', 'The post was updated.');
 
+        return redirect('/');
+    }
+
+    public function delete(Post $post)
+    {
+        $post->delete();
+        session()->flash('success', 'The post was deleted.');
         return redirect('/');
     }
 }

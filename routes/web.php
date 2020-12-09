@@ -22,4 +22,6 @@ Route::post('posts/save', [PostController::class, 'save']);
 Route::get('posts/{post:slug}/edit', [PostController::class, 'edit']);
 Route::patch('posts/{post:slug}/update', [PostController::class, 'update']);
 
+Route::delete('posts/{post:slug}/delete', [PostController::class, 'delete']);
+
 Route::get('posts/{post:slug}', [PostController::class, 'show']);

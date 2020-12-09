@@ -1,6 +1,4 @@
-@extends('layouts.master')
-
-@section('title', 'List post')
+@extends('layouts.master', ['title' => 'List post'])
 
 @section('content')
     <div class="container">
@@ -27,7 +25,7 @@
                                 {{ Str::limit($post->body, 100) }}
                             </div>
 
-                            <a href="posts/{{ $post->slug }}">Read more</a>
+                            <a href="posts/{{ $post->slug }}" class="text-decoration-none">Read more</a>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
                             Published on {{ $post->created_at->diffForHumans() }}
