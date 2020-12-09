@@ -12,8 +12,11 @@
 
 <body>
     @include('layouts.navigation')
-    <div class="py-4"></div>
-    @yield('content')
+
+    <div class="py-4">
+        @include('alert')
+        @yield('content')
+    </div>
 
     <script src="/js/bootstrap.min.js"></script>
 </body>

@@ -15,6 +15,7 @@
                                 <label for="title" class="form-label">Title</label>
                                 <input type="text" name="title" id="title"
                                     class="form-control @error('title') is-invalid @enderror" placeholder="Enter title...">
+
                                 @error('title')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -24,8 +25,8 @@
                             <div class="mb-3">
                                 <label for="body" class="form-label">Body</label>
                                 <textarea name="body" id="body" cols="30" rows="10" placeholder="Enter body..."
-                                    class="form-control @error('body') is-invalid @enderror">
-                                    </textarea>
+                                    class="form-control @error('body') is-invalid @enderror"></textarea>
+
                                 @error('body')
                                     <div class="invalid-feedback">
                                         {{ $message }}
