@@ -27,6 +27,12 @@ class PostController extends Controller
 
     public function save(Request $request)
     {
+        // * Validate the field
+        $attr = $request->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
         // $post = new Post;
         // $post->title = $request->title;
         // $post->slug = Str::slug($request->title);
@@ -39,9 +45,15 @@ class PostController extends Controller
         //     'body'  =>  $request->body
         // ]);
 
-        $post = $request->all();
-        $post['slug'] = Str::slug($request->title);
-        Post::create($post);
+        // $post = $request->all();
+        // $post['slug'] = Str::slug($request->title);
+        // Post::create($post);
+
+        // * Assign title to the slug
+        $attr['slug'] = Str::slug($request->title);
+
+        // * Create new post
+        Post::create($attr);
 
         // return redirect()->to('/posts/create');
         return back();
