@@ -15,6 +15,11 @@ use App\Http\Controllers\PostController;
 */
 
 Route::get('/', [PostController::class, 'index']);
+
 Route::get('posts/create', [PostController::class, 'create']);
 Route::post('posts/save', [PostController::class, 'save']);
+
+Route::get('posts/{post:slug}/edit', [PostController::class, 'edit']);
+Route::patch('posts/{post:slug}/update', [PostController::class, 'update']);
+
 Route::get('posts/{post:slug}', [PostController::class, 'show']);

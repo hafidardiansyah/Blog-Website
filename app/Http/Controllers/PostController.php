@@ -62,4 +62,25 @@ class PostController extends Controller
         return redirect('/');
         // return back();
     }
+
+    public function edit(Post $post)
+    {
+        return view('posts.edit', compact('post'));
+    }
+
+    public function update(Post $post)
+    {
+        // * Validate the field
+        $attr = request()->validate([
+            'title' => 'required',
+            'body' => 'required',
+        ]);
+
+        $post->update($attr);
+        session()->flash('success', 'The post was updated.');
+
+        // session()->flash('error', 'The post was updated.');
+
+        return redirect('/');
+    }
 }
