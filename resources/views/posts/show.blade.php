@@ -13,7 +13,7 @@
             {{ $post->created_at->format('d F, Y') }}
             &middot;
             @foreach ($post->tags as $tag)
-                <a href="#" class="text-decoration-none">{{ $tag->name }}</a>
+                <a href="/tags/{{ $tag->slug }}" class="text-decoration-none">{{ $tag->name }}</a>
             @endforeach
         </div>
         <hr>

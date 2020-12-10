@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
 
@@ -25,6 +26,7 @@ Route::patch('posts/{post:slug}/update', [PostController::class, 'update']);
 
 Route::delete('posts/{post:slug}/delete', [PostController::class, 'delete']);
 
-Route::get('posts/{post:slug}', [PostController::class, 'show']);
-
 Route::get('categories/{category:slug}', [CategoryController::class, 'show']);
+Route::get('tags/{tag:slug}', [TagController::class, 'show']);
+
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
