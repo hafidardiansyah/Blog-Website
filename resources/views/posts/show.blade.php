@@ -4,9 +4,13 @@
 
 @section('content')
     <div class="container">
-        <h1>{{ $post->title }}</h1>
+        <h3>{{ $post->title }}</h3>
         <div class="text-secondary">
-            {{ $post->category->name }} &middot; {{ $post->created_at->format('d F, Y') }}
+            <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">
+                {{ $post->category->name }}
+            </a>
+            &middot;
+            {{ $post->created_at->format('d F, Y') }}
         </div>
         <hr>
         <p>{{ $post->body }}</p>

@@ -5,11 +5,15 @@
 
         <div class="d-flex justify-content-between">
             <div>
-                <h3>All Post</h3>
+                @isset($category)
+                    <h4>Category: {{ $category->name }}</h4>
+                @else
+                    <h4>All Post</h4>
+                @endisset
                 <hr>
             </div>
             <div>
-                <a href="posts/create" class="btn btn-primary">New post</a>
+                <a href="/posts/create" class="btn btn-primary">New post</a>
             </div>
         </div>
 
@@ -25,11 +29,11 @@
                                 {{ Str::limit($post->body, 100) }}
                             </div>
 
-                            <a href="posts/{{ $post->slug }}" class="text-decoration-none">Read more</a>
+                            <a href="/posts/{{ $post->slug }}" class="text-decoration-none">Read more</a>
                         </div>
                         <div class="card-footer d-flex justify-content-between">
                             Published on {{ $post->created_at->diffForHumans() }}
-                            <a href="posts/{{ $post->slug }}/edit" class="btn btn-sm btn-success">Edit</a>
+                            <a href="/posts/{{ $post->slug }}/edit" class="btn btn-sm btn-success">Edit</a>
                         </div>
                     </div>
                 </div>
