@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use Illuminate\Support\Str;
 use App\Http\Requests\PostRequest;
+use App\Models\{Tag, Post, Category};
 
 class PostController extends Controller
 {
     public function index()
     {
         return view('posts.index', [
-            'posts' => Post::simplePaginate(9)
+            'posts' => Post::latest()->simplePaginate(9)
         ]);
     }
 
@@ -22,7 +22,11 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create', ['post' => new Post()]);
+        return view('posts.create', [
+            'post'          => new Post(),
+            'categories'    => Category::get(),
+            'tags'          => Tag::get(),
+        ]);
     }
 
     public function save(PostRequest $request)
@@ -56,9 +60,12 @@ class PostController extends Controller
 
         // * Assign title to the slug
         $attr['slug'] = Str::slug($request->title);
+        $attr['category_id'] = request('category');
 
         // * Create new post
-        Post::create($attr);
+        $post = Post::create($attr);
+
+        $post->tags()->attach(request('tags'));
 
         session()->flash('success', 'The post was created.');
 
@@ -70,14 +77,21 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('posts.edit', compact('post'));
+        return view('posts.edit', [
+            'post'          => $post,
+            'categories'    => Category::get(),
+            'tags'          => Tag::get(),
+        ]);
     }
 
     public function update(PostRequest $request, Post $post)
     {
         $attr = $request->all();
+        $attr['category_id'] = request('category');
 
         $post->update($attr);
+        $post->tags()->sync(request('tags'));
+
         session()->flash('success', 'The post was updated.');
 
         // session()->flash('error', 'The post was updated.');
@@ -87,6 +101,7 @@ class PostController extends Controller
 
     public function delete(Post $post)
     {
+        $post->tags()->detach();
         $post->delete();
         session()->flash('success', 'The post was deleted.');
         return redirect('/');
