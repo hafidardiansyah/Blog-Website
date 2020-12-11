@@ -61,6 +61,7 @@ class PostController extends Controller
         // * Assign title to the slug
         $attr['slug'] = Str::slug($request->title);
         $attr['category_id'] = request('category');
+        $attr['user_id'] = auth()->id();
 
         // * Create new post
         $post = Post::create($attr);
