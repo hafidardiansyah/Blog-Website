@@ -33,6 +33,7 @@
                         <div class="card-header">
                             {{ $post->title }}
                         </div>
+                        <img src="{{ asset($post->takeImage()) }}" class="card-img-top img">
                         <div class="card-body">
                             <div>
                                 {{ Str::limit($post->body, 100) }}
@@ -42,9 +43,9 @@
                         </div>
                         <div class="card-footer d-flex justify-content-between">
                             Published on {{ $post->created_at->diffForHumans() }}
-                            @auth
+                            @can('update', $post)
                                 <a href="/posts/{{ $post->slug }}/edit" class="btn btn-sm btn-success">Edit</a>
-                            @endauth
+                            @endcan
                         </div>
                     </div>
                 </div>

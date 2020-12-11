@@ -56,15 +56,22 @@ class PostController extends Controller
         // Post::create($post);
 
         // * New validate from postrequest
+        $request->validate([
+            'thumbnail' => 'image|mimes:jpeg,jpg,png|max:1024'
+        ]);
+
         $attr = $request->all();
 
-        // * Assign title to the slug
-        $attr['slug'] = Str::slug($request->title);
+        $slug = Str::slug($request->title);
+        $attr['slug'] = $slug;
+
+        $thumbnail = request()->file('thumbnail') ? $thumbnail = request()->file('thumbnail')->store('images/posts') : null;
+
         $attr['category_id'] = request('category');
-        $attr['user_id'] = auth()->id();
+        $attr['thumbnail'] = $thumbnail;
 
         // * Create new post
-        $post = Post::create($attr);
+        $post = auth()->user()->posts()->create($attr);
 
         $post->tags()->attach(request('tags'));
 
@@ -87,8 +94,22 @@ class PostController extends Controller
 
     public function update(PostRequest $request, Post $post)
     {
+        $request->validate([
+            'thumbnail' => 'image|mimes:jpeg,jpg,png|max:1024'
+        ]);
+
+        if (request()->file('thumbnail')) {
+            \Storage::delete($post->thumbnail);
+            $thumbnail = request()->file('thumbnail')->store('images/posts');
+        } else {
+            $thumbnail = $post->thumnail;
+        }
+
+
+        $this->authorize('update', $post);
         $attr = $request->all();
         $attr['category_id'] = request('category');
+        $attr['thumbnail'] = $thumbnail;
 
         $post->update($attr);
         $post->tags()->sync(request('tags'));
@@ -102,9 +123,9 @@ class PostController extends Controller
 
     public function delete(Post $post)
     {
-        $post->tags()->detach();
-        $post->delete();
-        session()->flash('success', 'The post was deleted.');
+        \Storage::delete($post->thumbnail);
+        $this->authorize('delete', $post);
+        session()->flash('error', "It wasn't your post.");
         return redirect('/posts');
     }
 }

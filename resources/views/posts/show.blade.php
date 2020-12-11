@@ -10,6 +10,8 @@
                 {{ $post->category->name }}
             </a>
             &middot;
+            {{ $post->author->name }}
+            &middot;
             {{ $post->created_at->format('d F, Y') }}
             &middot;
             @foreach ($post->tags as $tag)
@@ -19,7 +21,7 @@
         <hr>
         <p>{{ $post->body }}</p>
         <div>
-            @auth
+            @can('delete', $post)
                 <!-- Button trigger modal -->
                 <button type="button" class="btn btn-link text-danger btn-sm p-0 text-decoration-none" data-bs-toggle="modal"
                     data-bs-target="#deleteModal">
@@ -52,7 +54,7 @@
                         </div>
                     </div>
                 </div>
-            @endauth
+            @endcan
         </div>
     </div>
 @endsection

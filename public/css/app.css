@@ -375,6 +375,13 @@ template {
     display: none;
 }
 
+/* image */
+.img {
+    height: 270px;
+    object-fit: cover;
+    object-position: center;
+}
+
 [hidden] {
     display: none !important;
 }

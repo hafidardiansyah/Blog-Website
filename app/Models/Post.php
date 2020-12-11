@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'slug', 'body', 'category_id', 'user_id'];
+    protected $fillable = ['title', 'slug', 'body', 'category_id', 'thumbnail'];
     // protected $guarded = []; for admin because not recomended for user
 
     public function category()
@@ -25,5 +25,10 @@ class Post extends Model
     public function author()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function takeImage()
+    {
+        return "/storage/" . $this->thumbnail;
     }
 }
