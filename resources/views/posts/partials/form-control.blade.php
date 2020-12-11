@@ -24,7 +24,7 @@
 
 <div class="mb-3">
     <label for="category" class="form-label">Category</label>
-    <select name="category" id="category" class="form-select @error('category') is-invalid @enderror">
+    <select name="category" id="category" class="form-control @error('category') is-invalid @enderror">
         <option disabled selected>Choose one!</option>
         @foreach ($categories as $category)
             <option {{ $category->id == $post->category_id ? 'selected' : '' }} value="{{ $category->id }}">

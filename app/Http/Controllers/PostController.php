@@ -71,7 +71,7 @@ class PostController extends Controller
 
         // session()->flash('error', 'The post was created.');
 
-        return redirect('/');
+        return redirect('/posts');
         // return back();
     }
 
@@ -96,7 +96,7 @@ class PostController extends Controller
 
         // session()->flash('error', 'The post was updated.');
 
-        return redirect('/');
+        return redirect('/posts');
     }
 
     public function delete(Post $post)
@@ -104,6 +104,6 @@ class PostController extends Controller
         $post->tags()->detach();
         $post->delete();
         session()->flash('success', 'The post was deleted.');
-        return redirect('/');
+        return redirect('/posts');
     }
 }

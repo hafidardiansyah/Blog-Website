@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
@@ -16,7 +17,7 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
-Route::get('/', [PostController::class, 'index']);
+Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 
 Route::get('posts/create', [PostController::class, 'create']);
 Route::post('posts/save', [PostController::class, 'save']);
@@ -30,3 +31,8 @@ Route::get('categories/{category:slug}', [CategoryController::class, 'show']);
 Route::get('tags/{tag:slug}', [TagController::class, 'show']);
 
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
+
+Auth::routes();
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
