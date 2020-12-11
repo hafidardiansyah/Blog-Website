@@ -19,18 +19,20 @@ use App\Http\Controllers\CategoryController;
 
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 
-Route::get('posts/create', [PostController::class, 'create']);
-Route::post('posts/save', [PostController::class, 'save']);
+Route::prefix('posts')->middleware(['auth'])->group(function () {
+    Route::get('create', [PostController::class, 'create']);
+    Route::post('save', [PostController::class, 'save']);
 
-Route::get('posts/{post:slug}/edit', [PostController::class, 'edit']);
-Route::patch('posts/{post:slug}/update', [PostController::class, 'update']);
+    Route::get('{post:slug}/edit', [PostController::class, 'edit']);
+    Route::patch('{post:slug}/update', [PostController::class, 'update']);
 
-Route::delete('posts/{post:slug}/delete', [PostController::class, 'delete']);
+    Route::delete('{post:slug}/delete', [PostController::class, 'delete']);
+});
+
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 Route::get('categories/{category:slug}', [CategoryController::class, 'show']);
 Route::get('tags/{tag:slug}', [TagController::class, 'show']);
-
-Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 Auth::routes();
 
