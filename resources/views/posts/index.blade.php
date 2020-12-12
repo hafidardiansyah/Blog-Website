@@ -4,29 +4,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <div>
-                    <div>
-                        @isset($category)
-                            <h3 class="text-dark">Category: {{ $category->name }}</h3>
-                        @endisset
-
-                        @isset($tag)
-                            <h3 class="text-dark">Tag: {{ $tag->name }}</h3>
-                        @endisset
-
-                        @if (!isset($tag) && !isset($category))
-                            <h3 class="text-dark">All posts</h3>
-                        @endif
-                        <hr>
-                    </div>
-                    {{-- <div>
-                        @if (Auth::check())
-                            <a href="/posts/create" class="btn btn-primary">New post</a>
-                            @else
-                            <a href="{{ route('login') }}" class="btn btn-primary">Login to create new post</a>
-                        @endif
-                    </div> --}}
-                </div>
+                <h3 class="text-dark">All posts</h3>
+                <hr>
                 @forelse ($posts as $post)
                     <div class="card mb-4">
                         @if ($post->thumbnail)

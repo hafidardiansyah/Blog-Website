@@ -15,11 +15,6 @@
                     <a class="nav-link{{ request()->is('/') ? ' active' : '' }}"
                         href="{{ route('posts.index') }}">Posts</a>
                 </li>
-            </ul>
-
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
-
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('login'))
@@ -46,7 +41,7 @@
                             <a href="/posts/create" class="dropdown-item">New post</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                                                                                            document.getElementById('logout-form').submit();">
+                                                                                                                                        document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
@@ -56,6 +51,15 @@
                         </div>
                     </li>
                 @endguest
+            </ul>
+
+            <!-- Right Side Of Navbar -->
+            <ul class="navbar-nav ml-auto">
+                <form action="{{ route('search.post') }}" method="GET" class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Enter keyword..." aria-label="Search"
+                        name="keyword">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </ul>
         </div>
     </div>

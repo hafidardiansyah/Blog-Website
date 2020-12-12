@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\SearchController;
 use App\Http\Controllers\CategoryController;
 
 /*
@@ -17,6 +18,7 @@ use App\Http\Controllers\CategoryController;
 |
 */
 
+Route::get('search', [SearchController::class, 'post'])->name('search.post');
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 
 Route::prefix('posts')->middleware(['auth'])->group(function () {

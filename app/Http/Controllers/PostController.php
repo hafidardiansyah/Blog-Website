@@ -13,13 +13,13 @@ class PostController extends Controller
         $categories = Category::latest()->limit(10)->get();
         return view('posts.index', [
             'categories' => $categories,
-            'posts' => Post::with('author', 'tags', 'category')->latest()->simplePaginate(10)
+            'posts' => Post::latest()->simplePaginate(10)
         ]);
     }
 
     public function show(Post $post)
     {
-        $posts = Post::where('category_id', $post->category_id)->latest()->limit(5)->get();
+        $posts = Post::latest()->limit(5)->get();
         return view('posts.show', compact('post', 'posts'));
     }
 
