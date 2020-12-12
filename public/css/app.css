@@ -382,6 +382,12 @@ template {
     object-position: center;
 }
 
+.img2 {
+    height: 400px;
+    object-fit: cover;
+    object-position: center;
+}
+
 [hidden] {
     display: none !important;
 }

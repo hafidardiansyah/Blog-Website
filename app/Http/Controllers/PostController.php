@@ -11,14 +11,14 @@ class PostController extends Controller
     public function index()
     {
         return view('posts.index', [
-            'categories'    => Category::get(),
-            'posts' => Post::latest()->simplePaginate(9)
+            'posts' => Post::with('author', 'tags', 'category')->latest()->simplePaginate(9)
         ]);
     }
 
     public function show(Post $post)
     {
-        return view('posts.show', compact('post'));
+        $posts = Post::where('category_id', $post->category_id)->latest()->limit(6)->get();
+        return view('posts.show', compact('post', 'posts'));
     }
 
     public function create()

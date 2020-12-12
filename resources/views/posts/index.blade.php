@@ -46,16 +46,19 @@
                                         class="text-decoration-none text-secondary">{{ $tag->name }}</a>
                                 @endforeach
                             </small>
-                            <h5 class="card-title">
+
+                            <h4 class="card-title">
                                 <a href="/posts/{{ $post->slug }}" class="text-decoration-none text-dark">
                                     {{ $post->title }}
                                 </a>
-                            </h5>
+                            </h4>
+
                             <div class="text-secondary my-3">{{ Str::limit($post->body, 190) }}</div>
+
                             <div class="d-flex justify-content-between align-items-center mt-2">
                                 <div class="media align-items-center">
                                     <img src="{{ $post->author->gravatar() }}" width="30" class="rounded-circle mr-2">
-                                    <div class="media-body">
+                                    <div class="media-body text-dark">
                                         {{ $post->author->name }}
                                     </div>
                                 </div>
