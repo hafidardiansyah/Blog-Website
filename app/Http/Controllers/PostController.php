@@ -10,14 +10,16 @@ class PostController extends Controller
 {
     public function index()
     {
+        $categories = Category::latest()->limit(10)->get();
         return view('posts.index', [
-            'posts' => Post::with('author', 'tags', 'category')->latest()->simplePaginate(9)
+            'categories' => $categories,
+            'posts' => Post::with('author', 'tags', 'category')->latest()->simplePaginate(10)
         ]);
     }
 
     public function show(Post $post)
     {
-        $posts = Post::where('category_id', $post->category_id)->latest()->limit(6)->get();
+        $posts = Post::where('category_id', $post->category_id)->latest()->limit(5)->get();
         return view('posts.show', compact('post', 'posts'));
     }
 

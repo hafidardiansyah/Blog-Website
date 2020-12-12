@@ -12,7 +12,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link{{ request()->is('posts') ? ' active' : '' }}"
+                    <a class="nav-link{{ request()->is('/') ? ' active' : '' }}"
                         href="{{ route('posts.index') }}">Posts</a>
                 </li>
             </ul>
@@ -46,7 +46,7 @@
                             <a href="/posts/create" class="dropdown-item">New post</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
-                                                                                        document.getElementById('logout-form').submit();">
+                                                                                            document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 

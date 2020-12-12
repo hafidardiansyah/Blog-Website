@@ -10,7 +10,7 @@
 
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="media align-items-center my-3">
-                        <img src="{{ $post->author->gravatar() }}" width="26" class="rounded-circle mr-2">
+                        <img src="{{ $post->author->gravatar() }}" width="30" class="rounded-circle mr-2">
                         <div class="media-body text-dark">
                             {{ $post->author->name }}
                         </div>
@@ -32,7 +32,7 @@
                     </small>
                 </div>
                 @if ($post->thumbnail)
-                    <img src="{{ asset($post->takeImage()) }}" class="card-img-top img2 mb-2 rounded w-100">
+                    <img src="{{ asset($post->takeImage()) }}" class="card-img-top img2 rounded w-100">
                 @endif
                 <hr>
                 <p class="text-dark">{!! nl2br($post->body) !!}</p>
@@ -82,7 +82,7 @@
                 <h3 class="text-dark mt-3">More post</h3>
                 <hr>
                 @foreach ($posts as $post)
-                    <div class="card mb-4">
+                    <div class="card mb-3">
                         <div class="card-body">
                             <small>
                                 <a href="/categories/{{ $post->category->slug }}"
