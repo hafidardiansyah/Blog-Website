@@ -5,28 +5,41 @@
 @section('content')
     <div class="container">
         <h3>{{ $post->title }}</h3>
+
         <div class="text-secondary">
             <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none">
                 {{ $post->category->name }}
             </a>
-            &middot;
-            {{ $post->author->name }}
+
             &middot;
             {{ $post->created_at->format('d F, Y') }}
             &middot;
+
             @foreach ($post->tags as $tag)
                 <a href="/tags/{{ $tag->slug }}" class="text-decoration-none">{{ $tag->name }}</a>
             @endforeach
         </div>
+
+        <div class="media align-items-center my-3">
+            <img src="{{ $post->author->gravatar() }}" width="26" class="rounded-circle mr-2">
+            <div class="media-body">
+                {{ $post->author->name }}
+            </div>
+        </div>
+
         <hr>
-        <p>{{ $post->body }}</p>
+
+        <p>{!! nl2br($post->body) !!}</p>
+
         <div>
             @can('delete', $post)
                 <!-- Button trigger modal -->
-                <button type="button" class="btn btn-link text-danger btn-sm p-0 text-decoration-none" data-bs-toggle="modal"
+                <button type="button" class="btn btn-sm btn-danger text-decoration-none" data-bs-toggle="modal"
                     data-bs-target="#deleteModal">
                     Delete
                 </button>
+
+                <a href="/posts/{{ $post->slug }}/edit" class="btn btn-sm btn-success">Edit</a>
 
                 <!-- Modal -->
                 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">

@@ -377,7 +377,7 @@ template {
 
 /* image */
 .img {
-    height: 270px;
+    height: 400px;
     object-fit: cover;
     object-position: center;
 }

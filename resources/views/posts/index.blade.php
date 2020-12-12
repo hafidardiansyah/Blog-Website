@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="d-flex justify-content-between">
+        <div>
             <div>
                 @isset($category)
                     <h4>Category: {{ $category->name }}</h4>
@@ -17,52 +17,76 @@
                 @endif
                 <hr>
             </div>
-            <div>
+            {{-- <div>
                 @if (Auth::check())
                     <a href="/posts/create" class="btn btn-primary">New post</a>
-                @else
+                    @else
                     <a href="{{ route('login') }}" class="btn btn-primary">Login to create new post</a>
                 @endif
-            </div>
+            </div> --}}
         </div>
 
         <div class="row">
-            @forelse ($posts as $post)
-                <div class="col-md-4">
+            <div class="col-md-8">
+                @forelse ($posts as $post)
                     <div class="card mb-4">
-                        <div class="card-header">
-                            {{ $post->title }}
-                        </div>
-                        <img src="{{ asset($post->takeImage()) }}" class="card-img-top img">
+                        @if ($post->thumbnail)
+                            <a href="/posts/{{ $post->slug }}">
+                                <img src="{{ asset($post->takeImage()) }}" class="card-img-top img">
+                            </a>
+                        @endif
                         <div class="card-body">
-                            <div>
-                                {{ Str::limit($post->body, 100) }}
+                            <small>
+                                <a href="/categories/{{ $post->category->slug }}" class="text-decoration-none text-secondary">
+                                    {{ $post->category->name }}
+                                </a>
+                                <span class="text-secondary">-</span>
+                                @foreach ($post->tags as $tag)
+                                    <a href="/tags/{{ $tag->slug }}"
+                                        class="text-decoration-none text-secondary">{{ $tag->name }}</a>
+                                @endforeach
+                            </small>
+                            <h5 class="card-title">
+                                <a href="/posts/{{ $post->slug }}" class="text-decoration-none text-dark">
+                                    {{ $post->title }}
+                                </a>
+                            </h5>
+                            <div class="text-secondary my-3">{{ Str::limit($post->body, 190) }}</div>
+                            <div class="d-flex justify-content-between align-items-center mt-2">
+                                <div class="media align-items-center">
+                                    <img src="{{ $post->author->gravatar() }}" width="30" class="rounded-circle mr-2">
+                                    <div class="media-body">
+                                        {{ $post->author->name }}
+                                    </div>
+                                </div>
+                                <div class="text-secondary">
+                                    <small>
+                                        Published on {{ $post->created_at->diffForHumans() }}
+                                    </small>
+                                </div>
                             </div>
-
-                            <a href="/posts/{{ $post->slug }}" class="text-decoration-none">Read more</a>
                         </div>
-                        <div class="card-footer d-flex justify-content-between">
-                            Published on {{ $post->created_at->diffForHumans() }}
-                            @can('update', $post)
-                                <a href="/posts/{{ $post->slug }}/edit" class="btn btn-sm btn-success">Edit</a>
-                            @endcan
+
+                    </div>
+                @empty
+                    <div class="col-md-6">
+                        <div class="alert alert-info">
+                            Ther's no post.
                         </div>
                     </div>
-                </div>
-            @empty
-                <div class="col-md-6">
-                    <div class="alert alert-info">
-                        Ther's no post.
-                    </div>
-                </div>
-            @endforelse
-        </div>
-
-        <div class="d-flex justify-content-center">
-            <div>
-                {{ $posts->links() }}
+                @endforelse
             </div>
+            {{-- <div class="col-md-4">
+                <ul class="list-group">
+                    @foreach ($categories as $category)
+                        <li class="list-group-item"><a
+                                href="/categories/{{ $post->category->slug }}">{{ $category->name }}</a></li>
+                    @endforeach
+                </ul>
+            </div> --}}
         </div>
+
+        {{ $posts->links() }}
 
     </div>
 @endsection

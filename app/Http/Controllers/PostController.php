@@ -11,6 +11,7 @@ class PostController extends Controller
     public function index()
     {
         return view('posts.index', [
+            'categories'    => Category::get(),
             'posts' => Post::latest()->simplePaginate(9)
         ]);
     }
@@ -123,8 +124,11 @@ class PostController extends Controller
 
     public function delete(Post $post)
     {
-        \Storage::delete($post->thumbnail);
         $this->authorize('delete', $post);
+
+        \Storage::delete($post->thumbnail);
+        $post->tags()->detach();
+        $post->delete();
         session()->flash('error', "It wasn't your post.");
         return redirect('/posts');
     }
