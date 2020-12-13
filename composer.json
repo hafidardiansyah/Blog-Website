@@ -33,7 +33,6 @@
         "laravel": {
             "dont-discover": [
                 "barryvdh/laravel-ide-helper"
-
             ]
         }
     },
@@ -52,6 +51,10 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "scripts": {
+        "compile": [
+            "php app/console assetic:dump --env=prod --no-debug",
+            "MyVendor\\MyClass::postDeployComposerCallback"
+        ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
             "@php artisan package:discover --ansi"
