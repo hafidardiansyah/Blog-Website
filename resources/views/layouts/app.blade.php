@@ -40,6 +40,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
     </script>
+
+    <script>
+        function previewImg() {
+            // Img preview & file input
+            const cover = document.querySelector('#thumbnail');
+            const coverLabel = document.querySelector('.custom-file-label');
+            const imgPreview = document.querySelector('.img-preview');
+
+            console.log(`Cover Label : ${coverLabel}`);
+
+            // file input
+            coverLabel.textContent = cover.files[0].name;
+
+            // Image preview
+            const fileCover = new FileReader();
+            fileCover.readAsDataURL(cover.files[0]);
+
+            fileCover.onload = function(e) {
+                imgPreview.src = e.target.result;
+            }
+        }
+
+    </script>
+
 </body>
 
 </html>

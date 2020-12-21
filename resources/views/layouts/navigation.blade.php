@@ -39,9 +39,9 @@
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a href="/posts/create" class="dropdown-item">New post</a>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                                                                                                        document.getElementById('logout-form').submit();">
+                            <a href="/posts/my_post/{{ Auth::user()->id }}" class="dropdown-item">My post</a>
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 

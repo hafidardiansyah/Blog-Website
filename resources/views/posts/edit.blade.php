@@ -3,7 +3,11 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-5 mb-2">
+                <h3 class="mb-2">Cover Image</h3>
+                <img src="{{ asset($post->takeImage()) }}" alt="Default Image" class="img-thumbnail img-preview">
+            </div>
+            <div class="col-md-7">
                 <div class="card">
                     <div class="card-header">Update post: {{ $post->title }}</div>
                     <div class="card-body">

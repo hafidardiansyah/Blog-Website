@@ -29,7 +29,7 @@
                                     {{ $post->title }}
                                 </a>
                             </h5>
-                            <div class="text-secondary my-3">{{ Str::limit($post->body, 190) }}</div>
+                            <div class="text-secondary my-3">{{ Str::limit($post->body, 279) }}</div>
                             <div class="d-flex justify-content-between align-items-center mt-2">
                                 <div class="media align-items-center">
                                     <img src="{{ $post->author->gravatar() }}" width="30" class="rounded-circle mr-2">

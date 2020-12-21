@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PostRequest;
 use App\Models\{Tag, Post, Category};
 
@@ -21,6 +20,12 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return view('posts.show', compact('post'));
+    }
+
+    public function my_post($user_id)
+    {
+        $posts = Post::get()->where('user_id', $user_id);
+        return view('posts.my-post', compact('posts'));
     }
 
     public function create()
@@ -101,13 +106,13 @@ class PostController extends Controller
             'thumbnail' => 'image|mimes:jpeg,jpg,png|max:1024'
         ]);
 
+
         if (request()->file('thumbnail')) {
-            Storage::delete($post->thumbnail);
+            \Storage::delete($post->thumbnail);
             $thumbnail = request()->file('thumbnail')->store('images/posts');
         } else {
-            $thumbnail = $post->thumnail;
+            $thumbnail = $post->thumbnail;
         }
-
 
         $this->authorize('update', $post);
         $attr = $request->all();
@@ -128,10 +133,12 @@ class PostController extends Controller
     {
         $this->authorize('delete', $post);
 
-        Storage::delete($post->thumbnail);
+        \Storage::delete($post->thumbnail);
         $post->tags()->detach();
         $post->delete();
+
         session()->flash('error', "It wasn't your post.");
+
         return redirect('/posts');
     }
 }

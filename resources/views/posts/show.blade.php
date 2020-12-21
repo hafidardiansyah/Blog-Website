@@ -33,7 +33,6 @@
                                         <div class="modal-body">
                                             <h2>{{ $post->title }}</h2>
                                             <p class="text-secondary fs-6">Published on {{ $post->created_at->diffForHumans() }}
-                                            </p>
                                         </div>
                                         <div class="modal-footer">
                                             <form action="/posts/{{ $post->slug }}/delete" method="POST">
@@ -75,7 +74,7 @@
                     </small>
                 </div>
                 @if ($post->thumbnail)
-                    <img src="{{ asset($post->takeImage()) }}" class="card-img-top img2 rounded w-100">
+                    <img src="{{ asset($post->takeImage()) }}" class="card-img-top rounded w-100">
                 @endif
                 <hr>
                 <p class="text-dark">{!! nl2br($post->body) !!}</p>

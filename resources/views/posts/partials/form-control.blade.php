@@ -1,10 +1,10 @@
 <div class="mb-3">
+    <label for="thumbnail" class="form-label">Image</label>
     <div class="custom-file">
-        <input type="file" class="custom-file-input  @error('thumbnail') is-invalid @enderror" id="thumbnail"
-            name="thumbnail">
-
+        <input type="file" class="custom-file-input @error('thumbnail') is-invalid @enderror" id="thumbnail"
+            name="thumbnail" onchange="previewImg()">
         @error('thumbnail')
-            <div class="invalid-feedback">
+            <div class=" invalid-feedback">
                 {{ $message }}
             </div>
         @enderror
@@ -56,32 +56,35 @@
 </div>
 
 <div class="mb-3">
-    <label class="form-label d-block">Tag</label>
+    <div class="form-group">
+        <label class="form-label d-block">Tag</label>
 
-    @foreach ($post->tags as $tag)
-        <div class="form-check form-check-inline">
-            <input class="form-check-input @error('tags') is-invalid @enderror" type="checkbox" value="{{ $tag->id }}"
-                id="{{ $tag->id }}" name="tags[]" checked>
-            <label class="form-check-label " for="{{ $tag->id }}">
-                {{ $tag->name }}
-            </label>
-        </div>
-    @endforeach
+        @error('tags')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+        @enderror
 
-    @foreach ($tags as $tag)
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" value="{{ $tag->id }}" id="{{ $tag->id }}" name="tags[]">
-            <label class="form-check-label" for="{{ $tag->id }}">
-                {{ $tag->name }}
-            </label>
-        </div>
-    @endforeach
+        @foreach ($post->tags as $tag)
+            <div class="form-check form-check-inline">
+                <input class="form-check-input @error('tags') is-invalid @enderror" type="checkbox"
+                    value="{{ $tag->id }}" id="{{ $tag->id }}" name="tags[]" checked>
+                <label class="form-check-label " for="{{ $tag->id }}">
+                    {{ $tag->name }}
+                </label>
+            </div>
+        @endforeach
 
-    @error('tags')
-        <div class="invalid-feedback">
-            {{ $message }}
-        </div>
-    @enderror
+        @foreach ($tags as $tag)
+            <div class="form-check form-check-inline">
+                <input class="form-check-input @error('tags') is-invalid @enderror" type="checkbox"
+                    value="{{ $tag->id }}" id="{{ $tag->id }}" name="tags[]">
+                <label class="form-check-label" for="{{ $tag->id }}">
+                    {{ $tag->name }}
+                </label>
+            </div>
+        @endforeach
+    </div>
 </div>
 
 
