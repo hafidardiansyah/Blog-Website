@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use App\Http\Requests\PostRequest;
 use App\Models\{Tag, Post, Category};
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -21,12 +22,6 @@ class PostController extends Controller
     public function show(Post $post)
     {
         return view('posts.show', compact('post'));
-    }
-
-    public function my_post($user_id)
-    {
-        $posts = Post::get()->where('user_id', $user_id);
-        return view('posts.my-post', compact('posts'));
     }
 
     public function create()

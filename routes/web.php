@@ -1,11 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TagController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\SearchController;
-use App\Http\Controllers\CategoryController;
+use Illuminate\Support\Facades\{Route, Auth};
+use App\Http\Controllers\{CategoryController, SearchController, PostController, MyPostController, TagController};
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +21,6 @@ Route::prefix('posts')->middleware(['auth'])->group(function () {
     Route::get('create', [PostController::class, 'create']);
     Route::post('save', [PostController::class, 'save']);
 
-    Route::get('my-post/{user_id:slug}', [PostController::class, 'my_post']);
     Route::get('{post:slug}/edit', [PostController::class, 'edit']);
     Route::patch('{post:slug}/update', [PostController::class, 'update']);
 
@@ -40,3 +35,5 @@ Route::get('tags/{tag:slug}', [TagController::class, 'show']);
 Auth::routes();
 
 Route::get('/', [PostController::class, 'index'])->name('posts.index');
+
+Route::get('my-post', [MyPostController::class, 'index']);
