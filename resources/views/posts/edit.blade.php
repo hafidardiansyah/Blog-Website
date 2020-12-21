@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Edit post'])
+@extends('layouts.app', ['title' => 'Edit post', 'keyword' => ''])
 
 @section('content')
     <div class="container">

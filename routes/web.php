@@ -25,7 +25,7 @@ Route::prefix('posts')->middleware(['auth'])->group(function () {
     Route::get('create', [PostController::class, 'create']);
     Route::post('save', [PostController::class, 'save']);
 
-    Route::get('my_post/{user_id:slug}', [PostController::class, 'my_post']);
+    Route::get('my-post/{user_id:slug}', [PostController::class, 'my_post']);
     Route::get('{post:slug}/edit', [PostController::class, 'edit']);
     Route::patch('{post:slug}/update', [PostController::class, 'update']);
 

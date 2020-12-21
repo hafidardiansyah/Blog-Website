@@ -12,8 +12,9 @@ class PostController extends Controller
     {
         $categories = Category::latest()->limit(10)->get();
         return view('posts.index', [
+            'keyword' => '',
             'categories' => $categories,
-            'posts' => Post::latest()->simplePaginate(10)
+            'posts' => Post::latest()->simplePaginate(5)
         ]);
     }
 

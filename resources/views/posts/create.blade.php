@@ -1,11 +1,12 @@
-@extends('layouts.app', ['title' => 'Create post'])
+@extends('layouts.app', ['title' => 'Create post', 'keyword' => ''])
 
 @section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-5 mb-2">
                 <h3 class="mb-2">Cover Image</h3>
-                <img src="https://dummyimage.com/900x700/000/fff" alt="Default Image" class="img-thumbnail img-preview">
+                <img src="https://dummyimage.com/200x200/f2f2f2/000333" alt="Default Image"
+                    class="img-thumbnail img-preview">
             </div>
             <div class="col-md-7">
                 <div class="card">
