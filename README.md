@@ -12,7 +12,7 @@
 <table>
     <tr>
         <td><img src="images/create.png"></td>
-        <td><img src="images/update.png.png"></td>
+        <td><img src="images/update.png"></td>
         <td><img src="images/delete.png"></td>
         <td><img src="images/pagination.png"></td>
         <td><img src="images/category.png"></td>
