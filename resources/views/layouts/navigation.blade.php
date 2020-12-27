@@ -41,8 +41,7 @@
                             <a href="/posts/create" class="dropdown-item">New post</a>
                             <a href="/my-post" class="dropdown-item">My post</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                                                                                document.getElementById('logout-form').submit();">
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
 
@@ -58,7 +57,7 @@
             <ul class="navbar-nav ml-auto">
                 <form action="{{ route('search.post') }}" method="GET" class="form-inline my-2 my-lg-0">
                     <input class="form-control mr-sm-2" type="search" placeholder="Enter keyword..." aria-label="Search"
-                        name="keyword" autocomplete="off" required value="{{ $keyword == '' ? '' : $keyword }}">
+                        name="keyword" autocomplete="off" autofocus>
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </ul>

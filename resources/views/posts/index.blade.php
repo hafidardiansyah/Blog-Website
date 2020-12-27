@@ -10,7 +10,8 @@
                     <div class="card mb-4">
                         @if ($post->thumbnail)
                             <a href="/posts/{{ $post->slug }}">
-                                <img src="{{ asset($post->takeImage()) }}" class="card-img-top img">
+                                <img src="{{ asset($post->takeImage()) }}" class="card-img-top img"
+                                    alt="{{ asset($post->takeImage()) }}">
                             </a>
                         @endif
                         <div class="card-body">
@@ -47,9 +48,11 @@
 
                     </div>
                 @empty
-                    <div class="col-md-6">
-                        <div class="alert alert-info">
-                            Ther's no post.
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="alert alert-info">
+                                Ther's no post.
+                            </div>
                         </div>
                     </div>
                 @endforelse

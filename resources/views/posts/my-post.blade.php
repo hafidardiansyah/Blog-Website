@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="card-columns">
-            @foreach ($posts as $post)
+            @forelse ($posts as $post)
                 <div class="card mb-4">
                     @if ($post->thumbnail)
                         <a href="/posts/{{ $post->slug }}">
@@ -16,7 +16,11 @@
                         <a href="/posts/{{ $post->slug }}" class="btn btn-primary">Detail</a>
                     </div>
                 </div>
-            @endforeach
+            @empty
+                <p class="text-info">
+                    Ther's no post.
+                </p>
+            @endforelse
         </div>
         {{ $posts->links() }}
     </div>
