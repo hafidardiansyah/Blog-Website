@@ -18,6 +18,10 @@ WBlog adalah website blog berisikan cerita-cerita dari banyak sumber, yang dibua
 
 Website ini saya buat untuk melatih saya menggunakan Laravel dan Bootstrap.
 
+### ✨ Demo
+
+Demo dapat kalian kunjungi di https://argumentative-ornam.000webhostapp.com
+
 ### :star: Fitur
 
 -   CRUD (Create Read Update Delete)
