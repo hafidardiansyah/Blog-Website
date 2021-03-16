@@ -31,11 +31,6 @@ Demo dapat kalian kunjungi di https://argumentative-ornam.000webhostapp.com
 -   Pagination
 -   Responsive website
 
-### :link: Social Media
-
--   Instagram : <a href="http://instagram.com/dev.hafid"> @dev.hafid</a>
--   Dribbble : <a href="https://dribbble.com/hafidardiansyah"> hafidardiansyah</a>
-
 ### 📝 Lisensi
 
 -   Copyright © 2020 Hafid Ardiansyah.
