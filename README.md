@@ -33,7 +33,7 @@ Demo dapat kalian kunjungi di https://argumentative-ornam.000webhostapp.com
 
 ### 📝 Lisensi
 
--   Copyright © 2020 Hafid Ardiansyah.
+-   Copyright © 2021 Hafid Ardiansyah.
 -   **Wobboders MIT License.**
 
 ---
